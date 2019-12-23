@@ -15,24 +15,29 @@
     	// 単語リスト
     	var wordList = [
     		{
-    			japanese: "電話",
-    			english: "Phone"
+          questionnumber: "第一問",
+    			lilic: "そしたらベンジーあたしをグレッチで殴って",
+    			title: "丸の内サディスティック"
     		},
     		{
-    			japanese: "歴史",
-    			english: "History"
+          questionnumber: "第二問",
+    			lilic: "劣等感 カテゴライズ そういうの忘れてみましょう",
+    			title: "本能"
     		},
     		{
-    			japanese: "社会",
-    			english: "Society"
+          questionnumber: "第三問",
+    			lilic: "静寂を破る ドイツ車とパトカー",
+    			title: "罪と罰"
     		},
     		{
-    			japanese: "世代",
-    			english: "Generation"
+          questionnumber: "第四問",
+    			lilic: "Hurray! hurray! The wind is up And blowing free on our native home",
+    			title: "NIPPON"
     		},
     		{
-    			japanese: "知識",
-    			english: "Knowledge"
+          questionnumber: "第五問",
+    			lilic: "don't U θink?",
+    			title: "ギブス"
     		}
     	];
     	
@@ -40,9 +45,11 @@
     	function showQuestion() {
         if(no < wordList.length){
           //次の問題がある場合は、表示する。
-          document.getElementById("question").innerHTML = wordList[no].japanese;
+          document.getElementById("number").innerHTML = wordList[no].questionnumber;
+          document.getElementById("question").innerHTML = wordList[no].lilic;
         }else{
           //全問終了したら、成績を発表する
+          document.getElementById("number").style.display = "none";
           document.getElementById("question").innerHTML = score + "/" + wordList.length;
           document.getElementById("answerForm").style.display = "none";
           if(score == wordList.length){
@@ -64,7 +71,7 @@
     	// 入力された回答の正誤判定を行う
     	function judge() {
         var answer = document.getElementById("answer").value;
-        if(answer == wordList[no].english){
+        if(answer == wordList[no].title){
           alert("正解です！");
           score++;
         }else{
@@ -79,13 +86,14 @@
     </script>
 </head>
 <body onload="showQuestion()">
-	<h1 id="title">椎名林檎 曲名クイズ</h1>
-  <h2 id="introduction">表示される歌詞を見て、曲名を答えて下さい。</h2>
-  <p>※曲名はCDに収録されている名前に準拠します。※</p>
-  <p>※全角かな、カナ、漢字、全・半角英字で解答して下さい。※</p>
+	<h1 id="title">🍎椎名林檎 曲名クイズ</h1>
+  <h2 id="introduction">表示される歌詞を見て、<br>曲名を答えて下さい。</h2>
+  <p>※曲名はCDに収録されて<br>いる名前に準拠します。※</p>
+  <p>※全角かな、カナ、漢字、全・<br>半角英字で解答して下さい。※</p>
+  <div id="number"></div>
 	<div id="question"></div>
 	<div id="answerForm">
-		<input type="text" id="answer" placeholder="英単語を入力">
+		<input type="text" id="answer" placeholder="曲名を入力">
 		<button onclick="judge()">OK</button>
 	</div>
 	<p id="resultMessage"></p>

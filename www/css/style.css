@@ -4,10 +4,15 @@ body {
 h1 {
 	color: #ff0000;
 }
+#number{
+  font-weight: 600;
+  width: 100%;
+  font-size: 20px; 
+}
 #question {
 	width: 100%;
 	margin: 40px 0;
-	font-size: 60px;
+	font-size: 30px;
 }
 #answerForm {
 	font-size: 20px;
