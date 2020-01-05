@@ -7,6 +7,9 @@
     <script src="components/loader.js"></script>
     <link rel="stylesheet" href="components/loader.css">
     <link rel="stylesheet" href="css/style.css">
+    
+    <script src="keys.js"></script>
+
     <script>
     	// 問題番号
     	var no = 0;
@@ -40,6 +43,18 @@
     			title: "ギブス"
     		}
     	];
+
+      //クイズがプレイされたかどうかの判定
+      var play_num = 0;
+      var ncmb = new NCMB(appKey,clientKey);
+      var QuizPlay = ncmb.DataStore("QuizPlay");
+      var key1 = "play"
+
+      //正解数
+      var result_num = 0;
+      var ncmb = new NCMB(appKey,clientKey);
+      var QuizResult = ncmb.DataStore("QuizResult");
+      var key2 = "result";
     	
     	// 問題を表示する
     	function showQuestion() {
@@ -49,6 +64,11 @@
           document.getElementById("question").innerHTML = wordList[no].lilic;
         }else{
           //全問終了したら、成績を発表する
+          play_num++;
+          db = new QuizPlay();
+          db.set(key1, play_num).save();
+          db = new QuizResult();
+          db.set(key2, result_num).save();
           document.getElementById("number").style.display = "none";
           document.getElementById("question").innerHTML = score + "/" + wordList.length;
           document.getElementById("answerForm").style.display = "none";
@@ -74,6 +94,7 @@
         if(answer == wordList[no].title){
           alert("正解です！");
           score++;
+          result_num++;
         }else{
           alert("残念！不正解です。");
         }
